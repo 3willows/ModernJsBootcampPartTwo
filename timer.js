@@ -20,7 +20,7 @@ class Timer {
       this.onStart();
     }
     this.tick();
-    this.interval = setInterval(this.tick, 1000);
+    this.interval = setInterval(this.tick, 10);
   }
 
   stop = () => {
@@ -47,7 +47,7 @@ class Timer {
       if (this.onTick) {
         this.onTick();
       }
-      console.log('tick');
+      // console.log('tick');
       this.onDurationChange();
     }
     else {
