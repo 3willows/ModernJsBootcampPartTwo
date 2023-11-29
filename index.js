@@ -8,7 +8,7 @@ const parameter = circle.getAttribute('r') * 2 * Math.PI;
 circle.setAttribute('stroke-dasharray', parameter)
 
 let inputValue = durationInput.value;
-let currentOffset = 0;
+let currentOffset = 0 - parameter/60;
 
 const callbacks = {
   onStart() {
