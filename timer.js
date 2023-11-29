@@ -31,25 +31,27 @@ class Timer {
   }
 
   onDurationChange = () => {
-    if (this.getTime > 0) {
       this.currentTime = this.getTime - 1;
-      durationInput.value = this.currentTime;
-    }
-    else{
-      this.stop();
-    }
+      this.durationInput.value = this.currentTime;
   }
 
   get getTime() {
-    return parseFloat(durationInput.value);
+    return parseFloat(this.durationInput.value);
   }
-  // leave the setter for later
+  setTime = (time) =>{
+
+  }
 
   tick = () => {
+    if (this.getTime > 0){
     if (this.onTick) {
       this.onTick();
     }
     console.log('tick');
-    this.onDurationChange();
+    this.onDurationChange();      
+    }
+    else{
+      this.stop();
+    }
   }
 }
