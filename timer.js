@@ -17,10 +17,10 @@ class Timer {
 
   start = () => {
     if (this.onStart) {
-      this.onStart();
+      this.onStart(this.timeRemaining);
     }
     this.tick();
-    this.interval = setInterval(this.tick, 10);
+    this.interval = setInterval(this.tick, 50);
   }
 
   stop = () => {
@@ -31,24 +31,23 @@ class Timer {
   }
 
   onDurationChange = () => {
-    this.setTime = this.getTime - 1;
+    this.setTime = this.timeRemaining - 1;
   }
 
-  get getTime() {
+  get timeRemaining() {
     return parseFloat(this.durationInput.value);
   }
 
   set setTime(time) {
-    this.durationInput.value = time;
+    this.durationInput.value = Math.round(time);
   }
 
   tick = () => {
-    if (this.getTime > 0) {
+    if (this.timeRemaining > 0) {
       if (this.onTick) {
-        this.onTick();
-      }
-      // console.log('tick');
+        this.onTick(this.timeRemaining);
       this.onDurationChange();
+      }
     }
     else {
       this.stop();

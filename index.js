@@ -3,22 +3,23 @@ const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 const circle = document.querySelector('circle');
 
-const parameter = circle.getAttribute('r') * 2 * Math.PI;
-// console.log(parameter)
-circle.setAttribute('stroke-dasharray', parameter)
+const perimeter = circle.getAttribute('r') * 2 * Math.PI;
+// console.log(perimeter)
+circle.setAttribute('stroke-dasharray', perimeter)
 
 let inputValue = durationInput.value;
-let currentOffset = 0 - parameter/60;
+let currentOffset;
+let duration;
 
 const callbacks = {
-  onStart() {
+  onStart(totalDuration) {
     // console.log("time started")
+    duration = totalDuration;
   },
-  onTick() {
+  onTick(timeRemaining) {
     // console.log("timer just ticked");
-    circle.setAttribute('stroke-dashoffset', currentOffset);
-    currentOffset -= parameter/60;
-
+    currentOffset = (perimeter * timeRemaining) / duration - perimeter;
+    circle.setAttribute('stroke-dashoffset', currentOffset)
   },
   onComplete() {
     // console.log("time is completed");
