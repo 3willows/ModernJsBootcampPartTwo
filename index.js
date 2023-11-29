@@ -17,7 +17,7 @@ const callbacks = {
   onTick() {
     // console.log("timer just ticked");
     circle.setAttribute('stroke-dashoffset', currentOffset);
-    currentOffset -= parameter/360;
+    currentOffset -= parameter/60;
 
   },
   onComplete() {
