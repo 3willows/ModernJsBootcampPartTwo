@@ -5,10 +5,10 @@ class Timer {
     this.startButton = startButton;
     this.stopButton = stopButton;
 
-    this.startButton.addEventListener('click', this.start);
+    this.startButton.addEventListener('click', this.start.bind(this));
   }
 
-  start = () => {
+  start(){
     console.log(this);
     document.querySelector("body").append("hi! ")
     this.importantMethodtoCall();
