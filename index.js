@@ -21,15 +21,23 @@ class Timer {
     }
     this.tick();
     this.interval = setInterval(this.tick, 1000);
-    // this.onDurationChange();      
   }
+
   stop = () => {
-    // console.log("clicked stop")
     clearInterval(this.interval);
+    if (this.onComplete) {
+      this.onComplete();
+    }
   }
+
   onDurationChange = () => {
-    this.currentTime = this.getTime - 1;
-    durationInput.value = this.currentTime;
+    if (this.getTime > 0) {
+      this.currentTime = this.getTime - 1;
+      durationInput.value = this.currentTime;
+    }
+    else{
+      this.stop();
+    }
   }
 
   get getTime() {
@@ -50,17 +58,17 @@ const durationInput = document.querySelector("#duration");
 const startButton = document.querySelector("#start");
 const stopButton = document.querySelector("#stop");
 
-const callbacks =   {
-    onStart() {
-      console.log("time started")
-    },
-    onTick() {
-      console.log("timer just ticked");
-    },
-    onComplete() {
-      console.log("time is completed");
-    }
+const callbacks = {
+  onStart() {
+    console.log("time started")
+  },
+  onTick() {
+    console.log("timer just ticked");
+  },
+  onComplete() {
+    console.log("time is completed");
   }
+}
 
 const timer = new Timer(durationInput, startButton, stopButton, callbacks);
 
